@@ -57,12 +57,32 @@ class LinkedList {
     this.length++;
     return this;
   }
+
+  pop() {
+    let curr = this.head;
+    let pre;
+
+    while (curr.next !== null) {
+      pre = curr;
+      curr = curr.next;
+
+      console.log("curr:", curr);
+      console.log("pre:", pre);
+    }
+
+    this.tail = pre;
+    this.tail.next = null;
+    this.length--;
+
+    return this;
+  }
 }
 
 export function test() {
   let myLinkedList = new LinkedList(1);
   myLinkedList.push(2);
 
+  myLinkedList.pop();
   myLinkedList.printList();
   // (2) Items in LL - Returns 2 Node
   //   if (myLinkedList.length !== 0) {
