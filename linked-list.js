@@ -118,21 +118,36 @@ class LinkedList {
 
     this.length--;
   }
+
+  get(index) {
+    let count = 1;
+
+    while (this.head !== null) {
+      if (count === index) {
+        return this.head;
+      }
+
+      count++;
+      this.head = this.head.next;
+    }
+  }
 }
 
 export function testLinkedList() {
   const myLinkedList = new LinkedList(1);
 
-  //   myLinkedList.push(20);
-  //   console.log("myLinkedListPush:", myLinkedList);
+  myLinkedList.push(20);
+  console.log("myLinkedListPush:", myLinkedList);
 
-  //   myLinkedList.push(30);
+  myLinkedList.push(30);
+  myLinkedList.push(40);
+  myLinkedList.push(50);
   //   console.log("myLinkedListPush:", myLinkedList);
 
   //   myLinkedList.pop();
 
-  //   myLinkedList.push(30);
-
-  console.log(myLinkedList.shift());
+  //   console.log(myLinkedList.shift());
   myLinkedList.printList();
+
+  console.log("get:", myLinkedList.get(3));
 }
