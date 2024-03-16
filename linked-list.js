@@ -10,9 +10,9 @@ class Node {
 class LinkedList {
   // WRITE LL CONSTRUCTOR HERE //
   constructor(value) {
-    this.newNode = new Node(value);
-    this.head = this.newNode;
-    this.tail = this.newNode;
+    const newNode = new Node(value);
+    this.head = newNode;
+    this.tail = newNode;
     this.length = 1;
   }
 
@@ -45,8 +45,7 @@ class LinkedList {
   }
 
   push(value) {
-    let newNode = new Node(value);
-
+    const newNode = new Node(value);
     if (!this.head) {
       this.head = newNode;
       this.tail = newNode;
@@ -55,6 +54,7 @@ class LinkedList {
       this.tail = newNode;
     }
     this.length++;
+
     return this;
   }
 
@@ -62,58 +62,39 @@ class LinkedList {
     let curr = this.head;
     let pre;
 
+    if (!this.head) {
+      return undefined;
+    }
+
+    if (this.head.next === null) {
+      this.head = null;
+      this.tail = null;
+
+      console.log("popped:", curr.value);
+      return curr;
+    }
+
     while (curr.next !== null) {
       pre = curr;
       curr = curr.next;
 
-      console.log("curr:", curr);
-      console.log("pre:", pre);
+      this.length--;
     }
 
     this.tail = pre;
     this.tail.next = null;
-    this.length--;
-
-    return this;
   }
 }
 
-export function test() {
+export function testLinkedList() {
   let myLinkedList = new LinkedList(1);
-  myLinkedList.push(2);
+  myLinkedList.push(10);
+  console.log("list push 10:", myLinkedList);
+  myLinkedList.push(20);
+  console.log("list push 20:", myLinkedList);
+  myLinkedList.push(30);
+  console.log("list push 30:", myLinkedList);
 
   myLinkedList.pop();
   myLinkedList.printList();
-  // (2) Items in LL - Returns 2 Node
-  //   if (myLinkedList.length !== 0) {
-  //     console.log(myLinkedList.pop().value);
-  //   } else {
-  //     console.log("null");
-  //   }
-
-  //   // (1) Item in LL - Returns 1 Node
-  //   if (myLinkedList.length !== 0) {
-  //     console.log(myLinkedList.pop().value);
-  //   } else {
-  //     console.log("null");
-  //   }
-
-  //   // (0) Items in LL - Returns null
-  //   if (myLinkedList.length !== 0) {
-  //     console.log(myLinkedList.pop().value);
-  //   } else {
-  //     console.log("null");
-  //   }
 }
-
-/*
-    EXPECTED OUTPUT:
-    ----------------
-    Head: 4
-    Tail: 4
-    Length: 1
-    
-    Linked List:
-    4
-
-*/

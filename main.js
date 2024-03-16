@@ -1,8 +1,8 @@
 import "./style.css";
-import { test } from "./linked-list";
+import { testLinkedList } from "./linked-list";
 
 document.querySelector("#app").innerHTML = `
   <div> </div>
 `;
 
-test();
+testLinkedList();
