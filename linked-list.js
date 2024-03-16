@@ -121,6 +121,7 @@ class LinkedList {
 
   get(index) {
     let count = 0;
+    let curr = this.head;
 
     if (index < count || index > this.length) return undefined;
 
@@ -130,8 +131,20 @@ class LinkedList {
       }
 
       count++;
-      this.head = this.head.next;
+
+      curr = this.head.next;
+
+      console.log("log:", this.head);
     }
+  }
+
+  set(index, value) {
+    let temp = this.get(index);
+    if (temp) {
+      temp.value = value;
+      return true;
+    }
+    return false;
   }
 }
 
@@ -139,8 +152,6 @@ export function testLinkedList() {
   const myLinkedList = new LinkedList(1);
 
   myLinkedList.push(20);
-  console.log("myLinkedListPush:", myLinkedList);
-
   myLinkedList.push(30);
   myLinkedList.push(40);
   myLinkedList.push(50);
@@ -149,7 +160,7 @@ export function testLinkedList() {
   //   myLinkedList.pop();
 
   //   console.log(myLinkedList.shift());
+  myLinkedList.get(1);
+  myLinkedList.set(1, 10);
   myLinkedList.printList();
-
-  console.log("get:", myLinkedList.get(0));
 }
