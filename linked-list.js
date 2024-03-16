@@ -122,19 +122,15 @@ class LinkedList {
   get(index) {
     let count = 0;
     let curr = this.head;
-
     if (index < count || index > this.length) return undefined;
 
     while (this.head !== null) {
       if (count === index) {
-        return this.head;
+        return curr;
       }
 
       count++;
-
-      curr = this.head.next;
-
-      console.log("log:", this.head);
+      curr = curr.next;
     }
   }
 
@@ -160,7 +156,9 @@ export function testLinkedList() {
   //   myLinkedList.pop();
 
   //   console.log(myLinkedList.shift());
-  myLinkedList.get(1);
-  myLinkedList.set(1, 10);
+  console.log("get:", myLinkedList.get(0));
+  myLinkedList.set(0, 10);
+  console.log("get:", myLinkedList.get(0));
+
   myLinkedList.printList();
 }
