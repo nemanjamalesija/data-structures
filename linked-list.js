@@ -100,22 +100,39 @@ class LinkedList {
     this.length++;
     return this;
   }
+
+  shift() {
+    if (!this.head) return undefined;
+
+    if (this.head.next === null) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      const shiftedEl = this.head;
+
+      const newHead = this.head.next;
+      this.head = newHead;
+
+      return shiftedEl;
+    }
+
+    this.length--;
+  }
 }
 
 export function testLinkedList() {
   const myLinkedList = new LinkedList(1);
 
-  myLinkedList.push(20);
-  console.log("myLinkedListPush:", myLinkedList);
+  //   myLinkedList.push(20);
+  //   console.log("myLinkedListPush:", myLinkedList);
 
-  myLinkedList.push(30);
-  console.log("myLinkedListPush:", myLinkedList);
+  //   myLinkedList.push(30);
+  //   console.log("myLinkedListPush:", myLinkedList);
 
-  myLinkedList.pop();
+  //   myLinkedList.pop();
 
-  myLinkedList.push(30);
+  //   myLinkedList.push(30);
 
-  console.log("unshift:", myLinkedList);
-
+  console.log(myLinkedList.shift());
   myLinkedList.printList();
 }
