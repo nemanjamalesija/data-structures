@@ -17,10 +17,10 @@ class LinkedList {
   }
 
   printList() {
-    let temp = this.head;
-    while (temp !== null) {
-      console.log("el:", temp.value, "next: ", temp.next);
-      temp = temp.next;
+    let curr = this.head;
+    while (curr !== null) {
+      console.log("value:", curr.value, "next: ", curr.next);
+      curr = curr.next;
     }
   }
 
@@ -124,7 +124,7 @@ class LinkedList {
     let curr = this.head;
     if (index < count || index > this.length) return undefined;
 
-    while (this.head !== null) {
+    while (curr !== null) {
       if (count === index) {
         return curr;
       }
@@ -156,9 +156,8 @@ export function testLinkedList() {
   //   myLinkedList.pop();
 
   //   console.log(myLinkedList.shift());
-  console.log("get:", myLinkedList.get(0));
-  myLinkedList.set(0, 10);
-  console.log("get:", myLinkedList.get(0));
+
+  console.log("get:", myLinkedList.get(5));
 
   myLinkedList.printList();
 }
