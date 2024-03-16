@@ -43,4 +43,57 @@ class LinkedList {
   getLength() {
     console.log("Length: " + this.length);
   }
+
+  push(value) {
+    let newNode = new Node(value);
+
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      this.tail.next = newNode;
+      this.tail = newNode;
+    }
+    this.length++;
+    return this;
+  }
 }
+
+export function test() {
+  let myLinkedList = new LinkedList(1);
+  myLinkedList.push(2);
+
+  myLinkedList.printList();
+  // (2) Items in LL - Returns 2 Node
+  //   if (myLinkedList.length !== 0) {
+  //     console.log(myLinkedList.pop().value);
+  //   } else {
+  //     console.log("null");
+  //   }
+
+  //   // (1) Item in LL - Returns 1 Node
+  //   if (myLinkedList.length !== 0) {
+  //     console.log(myLinkedList.pop().value);
+  //   } else {
+  //     console.log("null");
+  //   }
+
+  //   // (0) Items in LL - Returns null
+  //   if (myLinkedList.length !== 0) {
+  //     console.log(myLinkedList.pop().value);
+  //   } else {
+  //     console.log("null");
+  //   }
+}
+
+/*
+    EXPECTED OUTPUT:
+    ----------------
+    Head: 4
+    Tail: 4
+    Length: 1
+    
+    Linked List:
+    4
+
+*/
