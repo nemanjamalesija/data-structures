@@ -84,17 +84,38 @@ class LinkedList {
     this.tail = pre;
     this.tail.next = null;
   }
+
+  unshift(value) {
+    if (!value) return undefined;
+
+    const newNode = new Node(value);
+
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      newNode.next = this.head;
+      this.head = newNode;
+    }
+    this.length++;
+    return this;
+  }
 }
 
 export function testLinkedList() {
-  let myLinkedList = new LinkedList(1);
-  myLinkedList.push(10);
-  console.log("list push 10:", myLinkedList);
+  const myLinkedList = new LinkedList(1);
+
   myLinkedList.push(20);
-  console.log("list push 20:", myLinkedList);
+  console.log("myLinkedListPush:", myLinkedList);
+
   myLinkedList.push(30);
-  console.log("list push 30:", myLinkedList);
+  console.log("myLinkedListPush:", myLinkedList);
 
   myLinkedList.pop();
+
+  myLinkedList.push(30);
+
+  console.log("unshift:", myLinkedList);
+
   myLinkedList.printList();
 }
