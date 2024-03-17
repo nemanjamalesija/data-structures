@@ -1,5 +1,3 @@
-// WRITE NODE CLASS HERE //
-
 class Node {
   constructor(value) {
     this.value = value;
@@ -8,7 +6,6 @@ class Node {
 }
 
 class LinkedList {
-  // WRITE LL CONSTRUCTOR HERE //
   constructor(value) {
     const newNode = new Node(value);
     this.head = newNode;
@@ -138,26 +135,58 @@ class LinkedList {
     let temp = this.get(index);
     if (temp) {
       temp.value = value;
-      return true;
+      return;
     }
-    return false;
+    return undefined;
+  }
+
+  insert(index, value) {
+    if (index < 0 || index > this.length) return undefined;
+
+    if (index === 0) return this.unshift(value);
+    if (index === this.length) return this.push(value);
+
+    const newNode = new Node(value);
+    let prev = this.get(index - 1);
+
+    newNode.next = prev.next;
+    prev.next = newNode;
+    this.length++;
+
+    // let pre = this.head;
+    // let curr = this.head;
+
+    // for (let i = 0; i < index; i++) {
+    //   if (curr !== index) {
+    //     pre = curr;
+    //   }
+
+    //   curr = curr.next;
+    // }
+
+    // pre.next = newNode;
+    // newNode.next = curr;
+    // return newNode.value;
   }
 }
 
 export function testLinkedList() {
-  const myLinkedList = new LinkedList(1);
+  const myLinkedList = new LinkedList(0);
 
-  myLinkedList.push(20);
-  myLinkedList.push(30);
-  myLinkedList.push(40);
-  myLinkedList.push(50);
+  myLinkedList.push(1);
+  myLinkedList.push(2);
+  myLinkedList.push(3);
+
   //   console.log("myLinkedListPush:", myLinkedList);
 
   //   myLinkedList.pop();
 
   //   console.log(myLinkedList.shift());
 
-  console.log("get:", myLinkedList.get(5));
+  //   console.log("get:", myLinkedList.get(5));
 
+  myLinkedList.insert(1, 500);
   myLinkedList.printList();
+
+  //   console.log("list:", myLinkedList);
 }
