@@ -187,6 +187,24 @@ class LinkedList {
 
     this.length--;
   }
+
+  reverse() {
+    let temp = this.head;
+    this.head = this.tail;
+    this.tail = temp;
+
+    let next = temp.next;
+    let prev = null;
+
+    for (let i = 0; i < this.length; i++) {
+      next = temp.next;
+      temp.next = prev;
+      prev = temp;
+      temp = next;
+    }
+
+    return this;
+  }
 }
 
 export function testLinkedList() {
@@ -204,11 +222,12 @@ export function testLinkedList() {
 
   //   console.log("get:", myLinkedList.get(5));
 
-  myLinkedList.insert(1, 500);
-  myLinkedList.remove(1);
+  // myLinkedList.insert(1, 500);
+  // myLinkedList.remove(1);
 
+  myLinkedList.reverse();
   console.log("log:", myLinkedList);
-  myLinkedList.printList();
+  // myLinkedList.printList();
 
   //   console.log("list:", myLinkedList);
 }
