@@ -174,18 +174,17 @@ class LinkedList {
     if (index < 0 || index > this.length) return undefined;
     if (!this.head) return undefined;
 
-    if (this.head.next === null) {
+    let curr = this.get(index);
+    const prev = this.get(index - 1);
+
+    if (!this.head.next) {
       this.head = null;
       this.tail = null;
-
-      return;
     } else {
-      let temp = this.get(index);
-      const prev = this.get(index - 1);
-
-      prev.next = temp.next;
-      temp = null;
+      prev.next = curr.next;
+      curr = null;
     }
+
     this.length--;
   }
 }
@@ -193,9 +192,9 @@ class LinkedList {
 export function testLinkedList() {
   const myLinkedList = new LinkedList(100);
 
-  // myLinkedList.push(200);
-  // myLinkedList.push(300);
-  // myLinkedList.push(400);
+  myLinkedList.push(200);
+  myLinkedList.push(300);
+  myLinkedList.push(400);
 
   //   console.log("myLinkedListPush:", myLinkedList);
 
@@ -207,6 +206,8 @@ export function testLinkedList() {
 
   myLinkedList.insert(1, 500);
   myLinkedList.remove(1);
+
+  console.log("log:", myLinkedList);
   myLinkedList.printList();
 
   //   console.log("list:", myLinkedList);
