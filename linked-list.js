@@ -15,9 +15,11 @@ class LinkedList {
 
   printList() {
     let curr = this.head;
+    let index = 0;
     while (curr !== null) {
-      console.log("value:", curr.value, "next: ", curr.next);
+      console.log("index:", index, "value:", curr.value, "next: ", curr.next);
       curr = curr.next;
+      index++;
     }
   }
 
@@ -168,14 +170,32 @@ class LinkedList {
     // newNode.next = curr;
     // return newNode.value;
   }
+  remove(index) {
+    if (index < 0 || index > this.length) return undefined;
+    if (!this.head) return undefined;
+
+    if (this.head.next === null) {
+      this.head = null;
+      this.tail = null;
+
+      return;
+    } else {
+      let temp = this.get(index);
+      const prev = this.get(index - 1);
+
+      prev.next = temp.next;
+      temp = null;
+    }
+    this.length--;
+  }
 }
 
 export function testLinkedList() {
-  const myLinkedList = new LinkedList(0);
+  const myLinkedList = new LinkedList(100);
 
-  myLinkedList.push(1);
-  myLinkedList.push(2);
-  myLinkedList.push(3);
+  // myLinkedList.push(200);
+  // myLinkedList.push(300);
+  // myLinkedList.push(400);
 
   //   console.log("myLinkedListPush:", myLinkedList);
 
@@ -186,6 +206,7 @@ export function testLinkedList() {
   //   console.log("get:", myLinkedList.get(5));
 
   myLinkedList.insert(1, 500);
+  myLinkedList.remove(1);
   myLinkedList.printList();
 
   //   console.log("list:", myLinkedList);
