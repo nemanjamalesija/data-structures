@@ -205,6 +205,54 @@ class LinkedList {
 
     return this;
   }
+
+  findMiddleNode() {
+    let slow = this.head;
+    let fast = this.head;
+
+    while (fast !== null && fast.next !== null) {
+      slow = slow.next;
+      fast = slow.next.next;
+    }
+
+    return slow;
+  }
+
+  hasLoop() {
+    let slow = this.head;
+    let fast = this.head;
+
+    while (fast !== null && fast.next !== null) {
+      slow = slow.next;
+      fast = fast.next.next;
+
+      if (slow === fast) return true;
+    }
+
+    return false;
+  }
+
+  findKthFromEnd(k) {
+    let fast = this.head;
+    let slow = this.head;
+
+    for (let i = 0; i < k; i++) {
+      if (fast === null) {
+        console.log("log:", "Not found");
+        return null;
+      }
+
+      fast = fast.next;
+    }
+
+    while (fast !== null) {
+      fast = fast.next;
+      slow = slow.next;
+    }
+
+    console.log("found:", slow);
+    return slow;
+  }
 }
 
 export function testLinkedList() {
@@ -227,6 +275,5 @@ export function testLinkedList() {
 
   myLinkedList.reverse();
   myLinkedList.printList();
-
-  //   console.log("list:", myLinkedList);
+  myLinkedList.findKthFromEnd(2);
 }
