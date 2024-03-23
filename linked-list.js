@@ -226,8 +226,7 @@ export function testLinkedList() {
   // myLinkedList.remove(1);
 
   myLinkedList.reverse();
-  console.log("log:", myLinkedList);
-  // myLinkedList.printList();
+  myLinkedList.printList();
 
   //   console.log("list:", myLinkedList);
 }
