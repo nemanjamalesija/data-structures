@@ -253,6 +253,8 @@ class LinkedList {
     console.log("found:", slow);
     return slow;
   }
+
+  partitionList(x) {}
 }
 
 export function testLinkedList() {
@@ -273,7 +275,9 @@ export function testLinkedList() {
   // myLinkedList.insert(1, 500);
   // myLinkedList.remove(1);
 
-  myLinkedList.reverse();
-  myLinkedList.printList();
-  myLinkedList.findKthFromEnd(2);
+  // myLinkedList.reverse();
+  // myLinkedList.printList();
+  // myLinkedList.findKthFromEnd(2);
+
+  console.log("my:", myLinkedList);
 }
