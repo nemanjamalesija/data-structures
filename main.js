@@ -103,7 +103,6 @@ class LinkedList {
 
         if (!lowChain.head) {
           lowChain.head = low;
-          console.log("set head:", lowChain);
         } else {
           low = lowChain.head;
           while (low.next !== null) {
