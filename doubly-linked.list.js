@@ -75,20 +75,68 @@ class DoublyLinkedList {
 
     if (index < this.length / 2) {
       temp = this.head;
-      for (let i = 0; i <= index; i++) {
+
+      for (let i = 0; i < index; i++) {
+        console.log("temp:", temp);
         temp = temp.next;
       }
     } else {
+      console.log("this.le:", this.length);
       if (index === this.length - 1) return this.tail;
 
       temp = this.tail;
 
-      for (let i = this.length; i > index + 1; i--) {
+      for (let i = this.length - 1; i > index; i--) {
         temp = temp.prev;
       }
     }
 
     return temp;
+  }
+
+  insert(index, value) {
+    let node = new Node(value);
+    if (index === this.length) {
+      console.log("index:", index);
+      console.log("lenghth:", this.length);
+
+      this.tail.next = node;
+      node.prev = this.tail;
+      this.tail = node;
+      this.length++;
+
+      return this;
+    } else {
+      const currNode = this.get(index);
+      let prev = currNode.prev;
+
+      prev.next = node;
+      node.prev = prev;
+      node.next = currNode;
+      currNode.prev = node;
+    }
+
+    this.length++;
+    return this;
+  }
+
+  remove(index) {
+    const node = this.get(index);
+    console.log("nnode:", node);
+    const prev = node.prev;
+    const next = node.next;
+    prev.next = next;
+    next.prev = prev;
+    this.length--;
+  }
+
+  printList() {
+    let temp = this.head;
+
+    for (let i = 0; i < this.length; i++) {
+      console.log(i, "->", temp.value);
+      temp = temp.next;
+    }
   }
 }
 
@@ -102,6 +150,8 @@ export function testDoublyLinkedList() {
   myLinkedList.push(700);
   myLinkedList.push(800);
 
-  console.log("my:", myLinkedList);
-  console.log("get:", myLinkedList.get(4));
+  //   console.log("get:", myLinkedList.get(4));
+  myLinkedList.insert(8, 5);
+  //   console.log("my:", myLinkedList);
+  myLinkedList.printList();
 }
