@@ -122,12 +122,13 @@ class DoublyLinkedList {
 
   remove(index) {
     const node = this.get(index);
-    console.log("nnode:", node);
-    const prev = node.prev;
-    const next = node.next;
-    prev.next = next;
-    next.prev = prev;
+    let prev = node.prev;
+
+    prev.next = node.next;
+    node.next = prev;
+
     this.length--;
+    return node;
   }
 
   printList() {
@@ -151,7 +152,7 @@ export function testDoublyLinkedList() {
   myLinkedList.push(800);
 
   //   console.log("get:", myLinkedList.get(4));
-  myLinkedList.insert(8, 5);
+  myLinkedList.remove(6, 5);
   //   console.log("my:", myLinkedList);
   myLinkedList.printList();
 }
