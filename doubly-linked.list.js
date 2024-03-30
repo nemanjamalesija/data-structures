@@ -67,13 +67,41 @@ class DoublyLinkedList {
 
     return newNode;
   }
+
+  get(index) {
+    if (index > this.length || index < 0) return undefined;
+
+    let temp;
+
+    if (index < this.length / 2) {
+      temp = this.head;
+      for (let i = 0; i <= index; i++) {
+        temp = temp.next;
+      }
+    } else {
+      if (index === this.length - 1) return this.tail;
+
+      temp = this.tail;
+
+      for (let i = this.length; i > index + 1; i--) {
+        temp = temp.prev;
+      }
+    }
+
+    return temp;
+  }
 }
 
 export function testDoublyLinkedList() {
   const myLinkedList = new DoublyLinkedList(100);
   myLinkedList.push(200);
   myLinkedList.push(300);
+  myLinkedList.push(400);
+  myLinkedList.push(500);
+  myLinkedList.push(600);
+  myLinkedList.push(700);
+  myLinkedList.push(800);
 
-  console.log("unshift:", myLinkedList.unshift(5));
   console.log("my:", myLinkedList);
+  console.log("get:", myLinkedList.get(4));
 }
