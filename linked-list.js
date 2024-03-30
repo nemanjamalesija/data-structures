@@ -154,21 +154,6 @@ class LinkedList {
     newNode.next = prev.next;
     prev.next = newNode;
     this.length++;
-
-    // let pre = this.head;
-    // let curr = this.head;
-
-    // for (let i = 0; i < index; i++) {
-    //   if (curr !== index) {
-    //     pre = curr;
-    //   }
-
-    //   curr = curr.next;
-    // }
-
-    // pre.next = newNode;
-    // newNode.next = curr;
-    // return newNode.value;
   }
   remove(index) {
     if (index < 0 || index > this.length) return undefined;
@@ -255,6 +240,67 @@ class LinkedList {
   }
 
   partitionList(x) {}
+
+  reverseBetween(m, n) {
+    // 1 -> 2 -> 3 -> 4 -> 5
+    // 1, 3
+    // 1 -> 4 -> 3 -> 2 -> 5
+
+    // Check if the list is empty. If it is, no action is needed.
+    if (this.head === null) return;
+
+    // Create a dummy node. This is a common technique used in linked list problems
+    // to simplify edge cases, like when modifying the head of the list.
+    const dummy = new Node(0);
+
+    // Link this dummy node to the head of the list.
+    // Now, dummy acts as a precursor to the head node.
+    dummy.next = this.head;
+
+    // 'prev' will eventually point to the node just before the start of the reversal.
+    // Initially, 'prev' is set to the dummy node.
+    let prev = dummy;
+
+    // Iterate to position 'prev' to the node just before where reversal begins.
+    // Since indices are 0-based, this loop moves 'prev' 'm' nodes forward.
+    for (let i = 0; i < m; i++) {
+      prev = prev.next;
+    }
+
+    // 'current' points to the first node that will be reversed.
+    // This is the mth node in the list (considering 0-based indexing).
+    let current = prev.next;
+    console.log("PREV}:", prev);
+    console.log("CURRENT:", current);
+    this.printList();
+
+    // The loop for the actual reversal of the segment between m and n.
+    // It runs (n - m) times, moving each node in turn to the position after 'prev'.
+    for (let i = 0; i < n - m; i++) {
+      // 'temp' temporarily stores the next node in line to be moved.
+
+      const temp = current.next;
+      console.log("temp:", temp);
+      // Bypass 'temp' in the current positioning.
+
+      current.next = temp.next;
+      console.log("currentnext:", current.next);
+      // Insert 'temp' between 'prev' and 'prev.next'.
+      // This step effectively moves 'temp' to the front of the reversal segment.
+
+      temp.next = prev.next;
+      console.log("temp.next:", temp.next);
+
+      prev.next = temp;
+      console.log("prev:", temp);
+
+      this.printList();
+    }
+
+    // Update the head of the list if the head was part of the reversal.
+    // This is where the dummy node becomes useful, as it simplifies this operation.
+    this.head = dummy.next;
+  }
 }
 
 export function testLinkedList() {
@@ -263,21 +309,6 @@ export function testLinkedList() {
   myLinkedList.push(200);
   myLinkedList.push(300);
   myLinkedList.push(400);
-
-  //   console.log("myLinkedListPush:", myLinkedList);
-
-  //   myLinkedList.pop();
-
-  //   console.log(myLinkedList.shift());
-
-  //   console.log("get:", myLinkedList.get(5));
-
-  // myLinkedList.insert(1, 500);
-  // myLinkedList.remove(1);
-
-  // myLinkedList.reverse();
-  // myLinkedList.printList();
-  // myLinkedList.findKthFromEnd(2);
 
   console.log("my:", myLinkedList);
 }
