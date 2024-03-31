@@ -155,6 +155,27 @@ class DoublyLinkedList {
       temp = temp.prev; // 200, 300, 400, 500
     }
   }
+
+  reverseFirstAndLast() {
+    let temp = this.head;
+    let prev;
+
+    while (temp.next !== null) {
+      temp = temp.next;
+      prev = temp.prev;
+    }
+
+    let oldHead = this.head;
+
+    this.head = temp;
+    this.head.next = oldHead.next;
+
+    this.tail = oldHead;
+    this.tail.prev = prev;
+    this.tail.next = null;
+
+    prev.next = this.tail;
+  }
 }
 
 export function testDoublyLinkedList() {
@@ -169,8 +190,6 @@ export function testDoublyLinkedList() {
 
   //   console.log("get:", myLinkedList.get(4));
 
-  myLinkedList.printList();
-  myLinkedList.reverse();
-  console.log("--------------:");
+  myLinkedList.reverseFirstAndLast();
   myLinkedList.printList();
 }
