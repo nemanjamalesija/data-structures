@@ -141,18 +141,16 @@ class DoublyLinkedList {
   }
 
   reverse() {
-    // 1 -> 2 -> 3 -> 4 -> 5
-    let temp = this.head;
-    this.head = this.tail;
-    this.tail = temp;
-    console.log("this:", this);
+    let temp = this.head; // 100
+    this.head = this.tail; // 800
+    this.tail = temp; // 100
 
-    for (let i = 0; i < this.length; i++) {
-      //temp 100
-      let before = temp.prev; // null, 100, 200, 300, 400
-      temp.prev = temp.next; // 200, 300, 400, 500, 600
-      temp.next = before; // null, 100, 200, 300
-      temp = temp.prev; // 200, 300, 400, 500
+    for (let i = this.length - 1; i > 0; i--) {
+      // temp 100
+      let before = temp.prev;
+      temp.prev = temp.next;
+      temp.next = before;
+      temp = temp.prev;
     }
   }
 
@@ -179,17 +177,18 @@ class DoublyLinkedList {
 }
 
 export function testDoublyLinkedList() {
-  const myLinkedList = new DoublyLinkedList(100);
-  myLinkedList.push(200);
-  myLinkedList.push(300);
-  myLinkedList.push(400);
-  myLinkedList.push(500);
-  myLinkedList.push(600);
-  myLinkedList.push(700);
-  myLinkedList.push(800);
+  //   const myLinkedList = new DoublyLinkedList(100);
+  //   myLinkedList.push(200);
+  //   myLinkedList.push(300);
+  //   myLinkedList.push(400);
+  //   myLinkedList.push(500);
+  //   myLinkedList.push(600);
+  //   myLinkedList.push(700);
+  //   myLinkedList.push(800);
 
-  //   console.log("get:", myLinkedList.get(4));
+  //   //   console.log("get:", myLinkedList.get(4));
 
-  myLinkedList.reverseFirstAndLast();
-  myLinkedList.printList();
+  //   myLinkedList.reverse();
+  //   myLinkedList.printList();
+  console.log("rem,:", 1 / 2);
 }
